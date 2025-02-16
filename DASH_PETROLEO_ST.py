@@ -132,7 +132,7 @@ elif menu == "📊 Deploy":
                           title="Projeção do Valor do Barril de Petróleo até a Data Selecionada")
 
             # Alterando a cor do gráfico para rosa claro
-            fig.update_traces(line=dict(color="lightpink"))
+            fig.update_traces(line=dict(color="#DE6A73"))
 
             st.plotly_chart(fig)
 
@@ -160,6 +160,9 @@ elif menu == "📊 Deploy":
             # Remover a primeira coluna e formatar a data sem a hora
             df_7_dias = df_7_dias[['data', 'y_pred']].copy()
             df_7_dias['data'] = df_7_dias['data'].dt.date  # Formatar data para mostrar apenas a data
+
+            # Arredondar os valores de previsão para 2 casas decimais
+            df_7_dias['y_pred'] = df_7_dias['y_pred'].round(2)
 
             st.write("**Últimos 7 dias de previsão antes da data selecionada:**")
             
