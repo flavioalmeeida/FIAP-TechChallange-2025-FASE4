@@ -5,10 +5,6 @@ import plotly.express as px
 # Lista de opções de navegação
 st.sidebar.markdown("### Etapas do projeto")
 
-# Definir uma chave no session_state para armazenar a página ativa
-if "pagina_selecionada" not in st.session_state:
-    st.session_state["pagina_selecionada"] = "🚀 Contexto do Trabalho"  
-
 # Lista de seções com ícones
 secoes = [
     "🚀 Contexto do Trabalho", 
@@ -23,8 +19,8 @@ for secao in secoes:
         st.session_state["pagina_selecionada"] = secao
     st.sidebar.empty()
 
-# Capturar a seção ativa
-menu = st.session_state["pagina_selecionada"]
+# Seção ativa
+menu = st.session_state.get("pagina_selecionada", "🚀 Contexto do Trabalho")
 
 # Título principal
 st.title("FIAP Pós Tech - Data Analytics")
