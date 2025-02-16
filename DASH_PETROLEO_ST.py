@@ -51,27 +51,24 @@ elif menu == "🔍 Exploração e Insights":
         st.write("""
         O modelo Prophet foi utilizado para realizar a previsão do preço do petróleo Brent. A partir dos dados históricos, ajustamos o modelo para prever os preços futuros, identificando tendências e sazonalidades que impactam os preços ao longo do tempo.
         """)
-        
-        # Aqui você pode incluir a implementação do Prophet (exemplo simples)
-        # from fbprophet import Prophet
-        # Ajuste e previsão com Prophet, e visualizações correspondentes
-        # Exemplo de uso do Prophet, adaptar conforme seu código
 
     with abas[1]:  # Aba Análises Power BI
         st.write("""
         No Power BI, foi realizado um estudo exploratório detalhado para identificar padrões e visualizar o comportamento do preço do petróleo Brent ao longo do tempo. Foram criados gráficos interativos que ilustram as tendências de mercado, sazonalidades e o impacto de eventos históricos no preço do petróleo.
         """)
-        
-        # Incluir aqui a descrição ou imagens dos dashboards Power BI que você tenha criado
-        # Por exemplo, imagens ou visualizações estáticas podem ser mostradas
+
+        # Definição da URL base do repositório GitHub
+        url_base = "https://raw.githubusercontent.com/flavioalmeeida/FIAP-TechChallange-2025-FASE4/ec795cc24b07cdb2d3ac5cd0c427c5fa1ba14d2d/"
+
+        # Exibição das imagens do Power BI com o novo parâmetro
+        st.image(f"{url_base}IMAGEM1_PB.png", caption="Análise Power BI - Gráfico 1", use_container_width=True)
+        st.image(f"{url_base}IMAGEM2_PB.png", caption="Análise Power BI - Gráfico 2", use_container_width=True)
+        st.image(f"{url_base}IMAGEM3_PB.png", caption="Análise Power BI - Gráfico 3", use_container_width=True)
 
     with abas[2]:  # Aba Resultados
         st.write("""
         Os resultados mostraram que o modelo de previsão tem uma boa capacidade de capturar as oscilações do preço do petróleo Brent. A análise também revelou como certos fatores geopolíticos e econômicos influenciam diretamente o valor do barril, além de identificar períodos críticos de alta e baixa.
         """)
-        
-        # Aqui você pode incluir gráficos ou resultados específicos que surgiram das suas análises ou previsões.
-        # Exemplo de gráfico com Plotly, caso aplicável, como o resultado da previsão
 
 ### 📊 SEÇÃO 3: DEPLOY ###
 elif menu == "📊 Deploy":
