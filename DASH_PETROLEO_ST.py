@@ -1,0 +1,133 @@
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+
+# Lista de opções de navegação
+st.sidebar.markdown("### Etapas do projeto")
+
+# Definir uma chave no session_state para armazenar a página ativa
+if "pagina_selecionada" not in st.session_state:
+    st.session_state["pagina_selecionada"] = "🚀 Contexto do Trabalho"  
+
+# Lista de seções com ícones
+secoes = [
+    "🚀 Contexto do Trabalho", 
+    "🔍 Exploração e Insights", 
+    "📊 Deploy", 
+    "📌 Conclusão e Referências"
+]
+
+# Criando botões clicáveis e destacando o selecionado
+for secao in secoes:
+    if st.sidebar.button(secao, key=secao, help=f"Abrir {secao}"):
+        st.session_state["pagina_selecionada"] = secao
+    st.sidebar.empty()
+
+# Capturar a seção ativa
+menu = st.session_state["pagina_selecionada"]
+
+# Título principal
+st.title("FIAP Pós Tech - Data Analytics")
+
+### 🚀 SEÇÃO 1: CONTEXTO DO TRABALHO ###
+if menu == "🚀 Contexto do Trabalho":
+    abas = st.tabs(["Objetivo", "Metodologia"])
+    
+    with abas[0]:  # Aba Objetivo
+        st.write("""
+        O objetivo deste trabalho é analisar os dados históricos do preço do petróleo Brent, identificar padrões e tendências significativas, e desenvolver uma solução de previsão utilizando Machine Learning para prever os preços futuros. Além disso, busca-se fornecer insights sobre o impacto de fatores econômicos, geopolíticos e sociais nas oscilações desse mercado. 
+        """)
+    
+    with abas[1]:  # Aba Metodologia
+        st.write("""
+        Para alcançar esse objetivo, coletamos os dados históricos do petróleo Brent e realizamos uma análise exploratória. Aplicamos um modelo de Machine Learning para previsão dos preços futuros, utilizando visualizações para comunicar os resultados. Desenvolvemos um dashboard interativo no Power BI e, por fim, implantamos a solução na plataforma Streamlit, permitindo uma interação intuitiva com os usuários.
+        """)
+
+### 🔍 SEÇÃO 2: EXPLORAÇÃO E INSIGHTS ###
+elif menu == "🔍 Exploração e Insights":
+    abas = st.tabs(["Modelo Prophet", "Análises Power BI", "Resultados"])
+
+    with abas[0]:  # Aba Modelo Prophet
+        st.write("""
+        O modelo Prophet foi utilizado para realizar a previsão do preço do petróleo Brent. A partir dos dados históricos, ajustamos o modelo para prever os preços futuros, identificando tendências e sazonalidades que impactam os preços ao longo do tempo.
+        """)
+        
+        # Aqui você pode incluir a implementação do Prophet (exemplo simples)
+        # from fbprophet import Prophet
+        # Ajuste e previsão com Prophet, e visualizações correspondentes
+        # Exemplo de uso do Prophet, adaptar conforme seu código
+
+    with abas[1]:  # Aba Análises Power BI
+        st.write("""
+        No Power BI, foi realizado um estudo exploratório detalhado para identificar padrões e visualizar o comportamento do preço do petróleo Brent ao longo do tempo. Foram criados gráficos interativos que ilustram as tendências de mercado, sazonalidades e o impacto de eventos históricos no preço do petróleo.
+        """)
+        
+        # Incluir aqui a descrição ou imagens dos dashboards Power BI que você tenha criado
+        # Por exemplo, imagens ou visualizações estáticas podem ser mostradas
+
+    with abas[2]:  # Aba Resultados
+        st.write("""
+        Os resultados mostraram que o modelo de previsão tem uma boa capacidade de capturar as oscilações do preço do petróleo Brent. A análise também revelou como certos fatores geopolíticos e econômicos influenciam diretamente o valor do barril, além de identificar períodos críticos de alta e baixa.
+        """)
+        
+        # Aqui você pode incluir gráficos ou resultados específicos que surgiram das suas análises ou previsões.
+        # Exemplo de gráfico com Plotly, caso aplicável, como o resultado da previsão
+
+### 📊 SEÇÃO 3: DEPLOY ###
+elif menu == "📊 Deploy":
+    abas = st.tabs(["Previsão"])
+
+    with abas[0]:
+
+        @st.cache_data
+        def gerar_df():
+            url = "https://raw.githubusercontent.com/flavioalmeeida/FIAP-TechChallange-FASE4/3a488bc28d967d9c97cc47244fb39f63d38944ae/DADOS_PETROLEO.xlsx"
+            df = pd.read_excel(io=url, engine="openpyxl", sheet_name="Sheet1", usecols="A:C", nrows=11345)
+            return df
+
+        df = gerar_df()
+
+        # Seleção de intervalo de datas
+        data_selecionada = st.date_input(
+            "Escolha o intervalo de datas para visualizar:",
+            value=[df["data"].min(), df["data"].max()],
+            min_value=df["data"].min(),
+            max_value=df["data"].max()
+        )
+
+        if len(data_selecionada) == 2:
+            data_inicial, data_final = pd.to_datetime(data_selecionada[0]), pd.to_datetime(data_selecionada[1])
+            df_filtrado = df[(df["data"] >= data_inicial) & (df["data"] <= data_final)]
+
+            st.write(f"Exibindo dados de **{data_inicial.strftime('%d/%m/%Y')}** até **{data_final.strftime('%d/%m/%Y')}**.")
+
+            fig = px.line(df_filtrado, x="data", y=["y", "y_pred"], labels={"value": "Valor (US$)", "data": "Data"},
+                        title="Projeção vs Valor Real do Barril de Petróleo")
+            st.plotly_chart(fig)
+
+            if not df_filtrado.empty:
+                valor_pred_mais_recente = df_filtrado["y_pred"].iloc[-1]
+                st.metric(label=f"Última projeção no intervalo selecionado ({data_final.strftime('%d/%m/%Y')})",
+                          value=f"{valor_pred_mais_recente:.2f} US$")
+        else:
+            st.write("Selecione um intervalo completo para visualizar os dados filtrados.")
+            fig = px.line(df, x="data", y=["y", "y_pred"], labels={"value": "Valor (US$)", "data": "Data"},
+                          title="Projeção Completa do Valor do Barril de Petróleo")
+            st.plotly_chart(fig)
+
+### 📌 SEÇÃO 4: CONCLUSÃO E REFERÊNCIAS ###
+elif menu == "📌 Conclusão e Referências":
+    abas = st.tabs(["Conclusão", "Referências"])
+
+    with abas[0]:  # Conclusão
+        st.write("Resumo final do estudo.")
+
+    with abas[1]:  # Referências
+        st.write("Lista de fontes utilizadas no estudo.")
+
+# Adicionando os nomes dos participantes no final do menu lateral
+st.sidebar.markdown("### Participantes")
+st.sidebar.write("Flávio Almeida e Silva - RM357571")
+st.sidebar.write("Matheus Matos Ferreira - RM357244")
+st.sidebar.write("Hercules Alves Sodré   - RM354814")
+
