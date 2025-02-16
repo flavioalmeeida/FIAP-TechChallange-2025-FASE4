@@ -57,13 +57,13 @@ elif menu == "🔍 Exploração e Insights":
         No Power BI, foi realizado um estudo exploratório detalhado para identificar padrões e visualizar o comportamento do preço do petróleo Brent ao longo do tempo. Foram criados gráficos interativos que ilustram as tendências de mercado, sazonalidades e o impacto de eventos históricos no preço do petróleo.
         """)
 
-        # Definição da URL base do repositório GitHub
-        url_base = "https://raw.githubusercontent.com/flavioalmeeida/FIAP-TechChallange-2025-FASE4/ec795cc24b07cdb2d3ac5cd0c427c5fa1ba14d2d/"
+        url_base = "https://raw.githubusercontent.com/flavioalmeeida/FIAP-TechChallange-2025-FASE4/main/"
 
-        # Exibição das imagens do Power BI com o novo parâmetro
+        # Carregar imagens nas abas do Power BI
         st.image(f"{url_base}IMAGEM1_PB.png", caption="Análise Power BI - Gráfico 1", use_container_width=True)
         st.image(f"{url_base}IMAGEM2_PB.png", caption="Análise Power BI - Gráfico 2", use_container_width=True)
         st.image(f"{url_base}IMAGEM3_PB.png", caption="Análise Power BI - Gráfico 3", use_container_width=True)
+
 
     with abas[2]:  # Aba Resultados
         st.write("""
