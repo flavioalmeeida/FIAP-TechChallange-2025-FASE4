@@ -156,8 +156,8 @@ elif menu == "📊 Deploy":
 
         @st.cache_data
         def gerar_df():
-            url = "https://raw.githubusercontent.com/flavioalmeeida/FIAP-TechChallange-2025-FASE4/ec795cc24b07cdb2d3ac5cd0c427c5fa1ba14d2d/DADOS_PETROLEO_ST.xlsx"
-            df = pd.read_excel(io=url, engine="openpyxl", sheet_name="Sheet1", usecols="A:C", nrows=11345)
+            url = "https://github.com/flavioalmeeida/FIAP-TechChallange-2025-FASE4/raw/1a8a4f975e9e0b43e984ff6bdb7255a6a823e71b/DADOS_PETROLEO_ST.xlsx"
+            df = pd.read_excel(io=url, engine="openpyxl", sheet_name="Sheet1", usecols="A:C", nrows=181)
             return df
 
         df = gerar_df()
