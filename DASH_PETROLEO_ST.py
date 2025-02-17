@@ -48,22 +48,63 @@ if menu == "🚀 Contexto do Trabalho":
 elif menu == "🔍 Exploração e Insights":
     abas = st.tabs(["Modelo Prophet", "Análises Power BI", "Resultados"])
 
+    url_base = "https://raw.githubusercontent.com/flavioalmeeida/FIAP-TechChallange-2025-FASE4/main/"
+
     with abas[0]:  # Aba Modelo Prophet
-        st.write("""
-        O Prophet foi escolhido por sua capacidade de modelar séries temporais complexas de forma intuitiva e automatizada.  
+        
+        st.markdown("##### **Preparação dos Dados – A base para previsões confiáveis**")
+        st.write("Antes de fazermos qualquer previsão, precisamos garantir que os dados estejam organizados e prontos para serem analisados. Para isso, carregamos a base de dados do IPEA, que contém os preços históricos do petróleo Brent.")
+        st.image("https://raw.githubusercontent.com/flavioalmeeida/FIAP-TechChallange-2025-FASE4/main/IMAGEM1%20-%20ML.jpg", caption="Carregamento dos Dados", use_container_width=True)
+        
+        st.write("Realizamos uma limpeza nos dados, verificamos valores nulos e reestruturamos a tabela para que o Prophet possa interpretar corretamente as informações.")
+        st.image("https://raw.githubusercontent.com/flavioalmeeida/FIAP-TechChallange-2025-FASE4/main/IMAGEM2%20-%20ML.jpg", caption="Limpeza e Preparação dos Dados", use_container_width=True)
+        
+        st.write("Também dividimos os dados em treino e teste, separando os últimos 180 dias para avaliar a qualidade das previsões.")
+        st.image("https://raw.githubusercontent.com/flavioalmeeida/FIAP-TechChallange-2025-FASE4/main/IMAGEM3%20-%20ML.jpg", caption="Divisão de Treino e Teste", use_container_width=True)
+        
+        st.markdown("##### **Primeiro Modelo – Prophet sem eventos externos**")
+        st.write("Agora que temos nossos dados prontos, treinamos nosso primeiro modelo Prophet. Esse modelo leva em consideração apenas a tendência e a sazonalidade do petróleo, sem adicionar eventos externos como guerras ou crises.")
+        st.image("https://raw.githubusercontent.com/flavioalmeeida/FIAP-TechChallange-2025-FASE4/main/IMAGEM4%20-%20ML.jpg", caption="Treinamento do Primeiro Modelo", use_container_width=True)
+        
+        st.write("Geramos previsões para os próximos 180 dias e visualizamos os resultados em gráficos interativos, onde conseguimos analisar a tendência do mercado.")
+        st.image("https://raw.githubusercontent.com/flavioalmeeida/FIAP-TechChallange-2025-FASE4/main/IMAGEM5%20-%20ML.jpg", caption="Previsões do Primeiro Modelo", use_container_width=True)
+        
+        st.write("Mas será que esse modelo é preciso o suficiente? Calculamos o erro médio das previsões e a acurácia do modelo para entender sua performance.")
+        st.image("https://raw.githubusercontent.com/flavioalmeeida/FIAP-TechChallange-2025-FASE4/main/IMAGEM6%20-%20ML.jpg", caption="Métricas de Performance", use_container_width=True)
+        
+        st.write("Resultado: o primeiro modelo excluindo os eventos históricos, alcançou uma acurácia de 80,5%, o que é considerado um percentual muito bom para previsão.")
+        
+        st.markdown("##### **Segundo Modelo – Prophet com eventos globais**")
+        st.write("Sabemos que o preço do petróleo não é influenciado apenas por tendências de mercado, mas também por eventos globais como guerras, crises econômicas e políticas da OPEP.")
+        
+        st.write("Por isso, criamos um segundo modelo adicionando eventos históricos que impactaram o preço do petróleo. Entre eles, incluímos a Guerra do Golfo, a crise financeira de 2008, o colapso do petróleo em 2014 e até mesmo a guerra entre Rússia e Ucrânia.")
+        st.image("https://raw.githubusercontent.com/flavioalmeeida/FIAP-TechChallange-2025-FASE4/main/IMAGEM7%20-%20ML.jpg", caption="Eventos Globais Considerados", use_container_width=True)
+        st.image("https://raw.githubusercontent.com/flavioalmeeida/FIAP-TechChallange-2025-FASE4/main/IMAGEM8%20-%20ML.jpg", caption="Impacto dos Eventos no Modelo", use_container_width=True)
+        
+        st.write("Esse modelo agora consegue capturar melhor os impactos desses eventos nas previsões futuras.")
+        st.image("https://raw.githubusercontent.com/flavioalmeeida/FIAP-TechChallange-2025-FASE4/main/IMAGEM9%20-%20ML.jpg", caption="Previsões com Eventos Globais", use_container_width=True)
+        
+        st.write("Após o treinamento, analisamos novamente os gráficos e comparamos os resultados com o primeiro modelo.")
+        st.image("https://raw.githubusercontent.com/flavioalmeeida/FIAP-TechChallange-2025-FASE4/main/IMAGEM10%20-%20ML.jpg", caption="Comparação entre os Modelos", use_container_width=True)
+        
+        st.write("Resultado: o segundo modelo atingiu uma acurácia bem maior que o primeiro, 85,0%, mostrando maior confiabilidade na previsão.")
+        
+        st.markdown("##### **Comparação e Resultados dos Modelos**")
+        st.write("Analisamos o erro médio das previsões e observamos que o modelo que considera os eventos históricos tem um desempenho melhor, pois leva em conta os impactos externos que afetam diretamente o mercado de petróleo.")
+        
+        st.write("Isso mostra a importância de considerar fatores geopolíticos e econômicos na modelagem preditiva e como de fato o mercado de barris de petróleo é muito volátil e sensível aos intemperes da sociedade.")
+        
+        st.markdown("##### **Conclusão**")
+        st.write("Com este estudo, vimos que prever o preço do petróleo não é uma tarefa simples, mas o Prophet nos ajuda a entender as tendências e identificar padrões sazonais.")
+        
+        st.write("Também vimos que incluir eventos históricos melhora a precisão das previsões, tornando o modelo mais realista e aplicável para tomada de decisões.")
+        
+        st.write("No futuro, poderíamos aprimorar ainda mais essa abordagem adicionando mais variáveis macroeconômicas, como taxa de câmbio e estoques de petróleo.")
+        
+        st.write("Esse estudo reforça a importância de modelos preditivos no mercado financeiro e na economia global.")
 
-        O mercado de petróleo é altamente influenciado por fatores econômicos, geopolíticos e sazonais, tornando essencial o uso de um modelo que consiga lidar com essas variações. O Prophet oferece vantagens como:  
-
-        • **Facilidade de implementação e interpretação** dos componentes da previsão.  
-        • **Capacidade de incorporar feriados e eventos externos** que impactam os preços.  
-        • **Robustez na detecção de tendências e sazonalidades**, sem necessidade de ajustes manuais complexos.  
-
-        Dessa forma, o Prophet se mostra uma ferramenta adequada para a previsão do preço do petróleo Brent, fornecendo insights valiosos para a tomada de decisões estratégicas no setor.
-        """)
 
     with abas[1]:  # Aba Análises Power BI
-
-        url_base = "https://raw.githubusercontent.com/flavioalmeeida/FIAP-TechChallange-2025-FASE4/main/"
 
         # Carregar imagens nas abas do Power BI
         st.write("""
