@@ -51,6 +51,18 @@ elif menu == "🔍 Exploração e Insights":
     url_base = "https://raw.githubusercontent.com/flavioalmeeida/FIAP-TechChallange-2025-FASE4/main/"
 
     with abas[0]:  # Aba Modelo Prophet
+
+        st.markdown("""
+        O **Prophet** foi escolhido por sua capacidade de modelar séries temporais complexas de forma intuitiva e automatizada. 
+        O mercado de petróleo é altamente influenciado por fatores econômicos, geopolíticos e sazonais, tornando essencial o uso de um modelo que consiga lidar com essas variações. 
+        O Prophet oferece vantagens como:
+
+        - **Facilidade de implementação e interpretação** dos componentes da previsão.
+        - **Capacidade de incorporar feriados e eventos externos** que impactam os preços.
+        - **Robustez na detecção de tendências e sazonalidades**, sem necessidade de ajustes manuais complexos.
+
+        Dessa forma, o Prophet se mostra uma ferramenta adequada para a previsão do preço do petróleo Brent, fornecendo insights valiosos para a tomada de decisões estratégicas no setor.
+        """)
         
         st.markdown("##### **Preparação dos Dados – A base para previsões confiáveis**")
         st.write("Antes de fazermos qualquer previsão, precisamos garantir que os dados estejam organizados e prontos para serem analisados. Para isso, carregamos a base de dados do IPEA, que contém os preços históricos do petróleo Brent.")
@@ -186,13 +198,16 @@ elif menu == "📊 Deploy":
             st.metric(label=f"Última projeção até {data_selecionada.strftime('%d/%m/%Y')}",
                       value=f"{valor_pred_mais_recente:.2f} US$")
 
-        # Adicionando as métricas R² e MAE (valores inventados)
-        r2_value = 0.95  # Valor inventado para R²
-        mae_value = 2.5  # Valor inventado para MAE
+        # Adicionando as métricas de erro e acurácia (valores fornecidos)
+        rmse_value = 11.70  # Valor do Root Mean Squared Error
+        mean_value = 78.17  # Valor médio do Test Dataset
+        accuracy_value = 85.04  # Acurácia da previsão
 
         st.write(f"**Métricas do Modelo:**")
-        st.write(f"R² (Coeficiente de Determinação): {r2_value:.2f}")
-        st.write(f"MAE (Erro Absoluto Médio): {mae_value:.2f} US$")
+        st.write(f"Root Mean Squared Error (RMSE): {rmse_value:.2f}")
+        st.write(f"Mean Value do Test Dataset: {mean_value:.2f}")
+        st.write(f"Forecast Accuracy: {accuracy_value:.2f}%")
+
 
         # Exibindo a tabela com os 7 dias anteriores à data selecionada
         df_7_dias = df_filtrado[df_filtrado["data"] <= data_selecionada].tail(7)
