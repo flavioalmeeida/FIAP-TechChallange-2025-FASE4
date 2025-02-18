@@ -122,6 +122,7 @@ elif menu == "🔍 Exploração e Insights":
         st.write("""
         No Power BI, foi desenvolvido um painel interativo que permite uma análise detalhada do preço do petróleo Brent ao longo do tempo. Nele, é possível observar a linha histórica de variação do preço do petróleo, com a flexibilidade de filtrar tanto por data quanto por evento histórico. O painel também destaca a variação máxima do preço do petróleo durante os eventos, além de detalhar os acontecimentos e seu impacto no valor do barril.
         """)
+
         st.image(f"{url_base}IMAGEM1_PB.png", caption="Análise Power BI - Imagem 1", use_container_width=True)
 
         st.write("""
@@ -134,6 +135,34 @@ elif menu == "🔍 Exploração e Insights":
         """)
         st.image(f"{url_base}IMAGEM3_PB.png", caption="Análise Power BI - Imagem 3", use_container_width=True)
 
+        st.markdown("""
+        Abaixo estão alguns dos principais acontecimentos apresentados no Dashboard que influenciaram o preço do petróleo, juntamente com seus impactos no mercado.
+        """)
+
+        # Guerra do Golfo
+        st.markdown("##### Guerra do Golfo (1990)")
+        st.markdown("- **Acontecimento**: O Iraque, liderado por Saddam Hussein, invadiu o Kuwait em agosto de 1990, levando a uma intervenção militar liderada pelos EUA.")
+        st.markdown("- **Impacto**: Os preços dispararam devido ao temor de interrupções no fornecimento de petróleo do Oriente Médio. O barril chegou a dobrar de preço antes de cair após o fim da guerra.")
+
+        # Guerra do Iraque
+        st.markdown("##### Guerra do Iraque (2003)")
+        st.markdown("- **Acontecimento**: A invasão dos EUA ao Iraque em 2003 derrubou o regime de Saddam Hussein, levando a anos de instabilidade no país.")
+        st.markdown("- **Impacto**: Inicialmente, o temor de uma crise de abastecimento elevou os preços. No entanto, a guerra prolongada não resultou em grandes interrupções na produção, e os preços voltaram a se ajustar.")
+
+        # Queda do Petróleo
+        st.markdown("##### Queda do Petróleo (2014)")
+        st.markdown("- **Acontecimento**: Um excesso de oferta global, impulsionado pelo aumento da produção de xisto nos EUA e a decisão da OPEP de não reduzir a produção, levou a uma forte queda nos preços.")
+        st.markdown("- **Impacto**: O Brent caiu de US$ 115 para menos de US$ 50 por barril, prejudicando países exportadores.")
+
+        # COVID-19
+        st.markdown("##### COVID-19 (2020)")
+        st.markdown("- **Acontecimento**: A pandemia levou a lockdowns e a uma redução massiva na demanda por petróleo.")
+        st.markdown("- **Impacto**: O Brent caiu para níveis históricos, chegando a menos de US$ 20 por barril. O WTI (petróleo dos EUA) até teve preços negativos brevemente.")
+
+        # Guerra Rússia-Ucrânia
+        st.markdown("##### Guerra Rússia-Ucrânia (2022)")
+        st.markdown("- **Acontecimento**: A invasão russa da Ucrânia levou a sanções ao petróleo e gás russos, desestabilizando o mercado energético.")
+        st.markdown("- **Impacto**: O Brent ultrapassou US$ 130 por barril em 2022 devido ao temor de escassez.")
 
     with abas[2]:  # Aba Resultados
         st.write("""
