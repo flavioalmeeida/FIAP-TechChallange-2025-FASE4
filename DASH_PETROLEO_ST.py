@@ -152,7 +152,7 @@ elif menu == "🔍 Exploração e Insights":
         # Queda do Petróleo
         st.markdown("##### Queda do Petróleo (2014)")
         st.markdown("- **Acontecimento**: Um excesso de oferta global, impulsionado pelo aumento da produção de xisto nos EUA e a decisão da OPEP de não reduzir a produção, levou a uma forte queda nos preços.")
-        st.markdown("- **Impacto**: O Brent caiu de US$ 115 para menos de US$ 50 por barril, prejudicando países exportadores.")
+        st.markdown("- **Impacto**: O Brent caiu de US 115 para menos de US 50 por barril, prejudicando países exportadores.")
 
         # COVID-19
         st.markdown("##### COVID-19 (2020)")
